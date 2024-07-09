@@ -3,19 +3,25 @@ const fs = require('fs')
 const path = require('path')
 const url = require('url')
 
-const sharePath = 'C:\\Users\\moooi\\Documents\\pan'
+const sharePath = '/home/nebulau/aliyunpan/05_影音/《大明王朝1566》独家超清修复版/'
 
 function updatePage(Path, res){
     let FileList = []
     if (fs.existsSync(Path)) {
         const files = fs.readdirSync(Path);
         for (let i = 0; i < files.length; i++) {
-            var FileInfo = { name: "", type: "", size: 0, date: "", time: "" }
+            var FileInfo = { name: "", type: "", size: 0, date: "" }
             FileInfo.name = files[i]
             let currentFile = Path + '/' + FileInfo.name;
             let stats = fs.lstatSync(currentFile);
-            FileInfo.date = stats.mtime.toString().substr(0, 10)
-            FileInfo.time = stats.mtime.toString().substr(11, 19)
+            
+            FileInfo.date = stats.mtime.getFullYear()                                       + '-' + 
+                            (Array(2).join(0) + (stats.mtime.getMonth() + 1)).slice(-2)     + '-' + 
+                            (Array(2).join(0) + stats.mtime.getDate()).slice(-2)            + ' ' +
+                            (Array(2).join(0) + stats.mtime.getHours()).slice(-2)           + ':' + 
+                            (Array(2).join(0) + stats.mtime.getMinutes()).slice(-2)         + ':' + 
+                            (Array(2).join(0) + stats.mtime.getSeconds()).slice(-2)
+
             if (!stats.isDirectory()){
                 FileInfo.type = currentFile.substr(currentFile.lastIndexOf(".") + 1)
                 FileInfo.size = stats.size
@@ -31,7 +37,7 @@ function updatePage(Path, res){
         console.warn(`指定的目录 ${filePath} 不存在！`);
     }
 
-    console.log(FileList)
+    // console.log(FileList)
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ list: FileList }));
 }
@@ -43,7 +49,7 @@ const server = http.createServer((req, res) => {
     }
 
     if('/file-list-update' === request){
-        updatePage('D:\\01_书籍\\', res)
+        updatePage(sharePath, res)
         return;
     }
     
@@ -55,6 +61,6 @@ const server = http.createServer((req, res) => {
     })
 })
 
-server.listen(80, ()=>{
-    console.log('server running at http://localhost:80/')
+server.listen(1080, ()=>{
+    console.log('server running at http://localhost:1080/')
 })

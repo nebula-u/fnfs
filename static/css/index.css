@@ -60,11 +60,14 @@ body {
 }
 
 #fast-menu {
-    width: 300px;
+    width: 200px;
     background-color: black;
 }
 
 #content-display{
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
     flex: 1;
 }
 
@@ -79,45 +82,37 @@ body {
     border-bottom: 1px solid white;
 }
 
-#item-list div{
+#item-list #name{
+    width: 250px;
+    border-right: 1px solid gray;
+    margin-left: 10px;
+    padding-right: 10px;
+}
+
+#item-list #date{
     flex: 1;
     border-right: 1px solid gray;
     margin-left: 10px;
 }
 
-#file-list{
-    display: flex;
-    flex-direction: column;
-}
-
-#file-list .file-item-j{
-    height: 25px;
-    background-color: rgb(106, 106, 106);
-    font-size: small;
-    line-height: 25px;
-    color: white;
-
-    display: flex;
-    flex-direction: row;
-}
-
-#file-list .file-item-o{
-    height: 25px;
-    background-color: rgb(146, 145, 145);
-    font-size: small;
-    line-height: 25px;
-    color: white;
-
-    display: flex;
-    flex-direction: row;
-}
-
-.file-item-j div{
+#item-list #type{
     flex: 1;
+    border-right: 1px solid gray;
     margin-left: 10px;
 }
 
-.file-item-o div{
+#item-list #size{
     flex: 1;
+    border-right: 1px solid gray;
     margin-left: 10px;
+}
+
+#item-list #opti{
+    flex: 1;
+    border-right: 1px solid gray;
+    margin-left: 10px;
+}
+
+#content-display iframe{
+    flex: 1;
 }
