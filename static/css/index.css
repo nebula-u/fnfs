@@ -1,0 +1,123 @@
+body {
+    background-color: rgb(52, 51, 51);
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+}
+
+#option-area {
+    border-bottom: 1px solid rgb(209, 208, 208);
+    height: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#option-area button {
+    margin-left: 10px;
+    background-color: gray;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    height: 20px;
+    cursor: pointer;
+}
+
+#path-display {
+    border-bottom: 1px solid rgb(209, 208, 208);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 25px;
+}
+
+#path-display #path {
+    background-color: rgb(230, 230, 230);
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    flex: 1;
+    margin-left: 10px;
+    height: 20px;
+    line-height: 20px;
+}
+
+#path-display #back {
+    margin-left: 10px;
+    background-color: gray;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+#main-page {
+    background-color: transparent;
+    flex: 1;
+
+    display: flex;
+    flex-direction: row;
+
+}
+
+#fast-menu {
+    width: 300px;
+    background-color: black;
+}
+
+#content-display{
+    flex: 1;
+}
+
+#item-list{
+    display: flex;
+    flex-direction: row;
+    height: 25px;
+    background-color: rgb(52, 51, 51, 0.8);
+    color: white;
+    font-size: small;
+    line-height: 25px;
+    border-bottom: 1px solid white;
+}
+
+#item-list div{
+    flex: 1;
+    border-right: 1px solid gray;
+    margin-left: 10px;
+}
+
+#file-list{
+    display: flex;
+    flex-direction: column;
+}
+
+#file-list .file-item-j{
+    height: 25px;
+    background-color: rgb(106, 106, 106);
+    font-size: small;
+    line-height: 25px;
+    color: white;
+
+    display: flex;
+    flex-direction: row;
+}
+
+#file-list .file-item-o{
+    height: 25px;
+    background-color: rgb(146, 145, 145);
+    font-size: small;
+    line-height: 25px;
+    color: white;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.file-item-j div{
+    flex: 1;
+    margin-left: 10px;
+}
+
+.file-item-o div{
+    flex: 1;
+    margin-left: 10px;
+}
