@@ -3,8 +3,8 @@ function getFileList(Path) {
     while (listDiv.firstChild) {
         listDiv.removeChild(listDiv.firstChild)
     }
-    // console.log(Path)
-    url = '/file-list-update' + Path + '/'
+    url = '/file-list-update' + Path
+    console.log('&' + url)
     
     fetch(url)
     .then(response=>response.json())
@@ -27,10 +27,9 @@ function getFileList(Path) {
             const fileName = document.createElement('div')
             fileName.id = 'file-name'
             fileName.classList.add('master')
-            console.log(json.list[i].path)
-            var pathParts = json.list[i].path.split('/').slice(4)
-            fileName.title = '/' + pathParts.join('/')
+            fileName.title = json.list[i].path
             fileName.innerText = json.list[i].name
+            console.log('! ' + json.list[i].path)
             
             // 4. 创建和设置文件的日期div
             const fileDate = document.createElement('div')

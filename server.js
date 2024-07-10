@@ -7,8 +7,11 @@ const sharePath = '/home/nebulau/aliyunpan/'
 
 function updatePage(Path, res){
     Path = sharePath+Path
+    if (!Path.endsWith(path.sep)) {
+        Path = Path + path.sep
+    }
 
-    console.log(Path)
+    console.log('#: ' + Path)
 
     // 定义返回给前端程序的数组对象
     let FileList = []
@@ -29,29 +32,29 @@ function updatePage(Path, res){
 
             // 填写文件路径
             let currentFile = Path + FileInfo.name
-            FileInfo.path = currentFile
-            console.log(currentFile)
+            FileInfo.path = '/' + path.relative(sharePath, currentFile)
+            console.log('8:' + path.relative(sharePath, currentFile))
 
-            // // 获取文件大小、修改日期等详细信息
-            // let stats = fs.lstatSync(currentFile);
+            // 获取文件大小、修改日期等详细信息
+            let stats = fs.lstatSync(currentFile);
             
-            // // 填充文件修改日期
-            // FileInfo.date = stats.mtime.getFullYear()                                       + '-' + 
-            //                 (Array(2).join(0) + (stats.mtime.getMonth() + 1)).slice(-2)     + '-' + 
-            //                 (Array(2).join(0) + stats.mtime.getDate()).slice(-2)            + ' ' +
-            //                 (Array(2).join(0) + stats.mtime.getHours()).slice(-2)           + ':' + 
-            //                 (Array(2).join(0) + stats.mtime.getMinutes()).slice(-2)         + ':' + 
-            //                 (Array(2).join(0) + stats.mtime.getSeconds()).slice(-2)
+            // 填充文件修改日期
+            FileInfo.date = stats.mtime.getFullYear()                                       + '-' + 
+                            (Array(2).join(0) + (stats.mtime.getMonth() + 1)).slice(-2)     + '-' + 
+                            (Array(2).join(0) + stats.mtime.getDate()).slice(-2)            + ' ' +
+                            (Array(2).join(0) + stats.mtime.getHours()).slice(-2)           + ':' + 
+                            (Array(2).join(0) + stats.mtime.getMinutes()).slice(-2)         + ':' + 
+                            (Array(2).join(0) + stats.mtime.getSeconds()).slice(-2)
 
-            // // 填充文件类型、大小
-            // if (!stats.isDirectory()){
-            //     FileInfo.type = currentFile.substr(currentFile.lastIndexOf(".") + 1)
-            //     FileInfo.size = stats.size
-            // }
-            // else{
-            //     FileInfo.type = 'folder'
-            //     FileInfo.size = 0
-            // }
+            // 填充文件类型、大小
+            if (!stats.isDirectory()){
+                FileInfo.type = currentFile.substr(currentFile.lastIndexOf(".") + 1)
+                FileInfo.size = stats.size
+            }
+            else{
+                FileInfo.type = 'folder'
+                FileInfo.size = 0
+            }
             
             // 将当前文件信息压入数组中
             FileList.push(FileInfo);
@@ -72,8 +75,9 @@ const server = http.createServer((req, res) => {
     }
     RequestSegment = request.split('/')
 
+    console.log('@ ' + request)
     if('file-list-update' === RequestSegment[1]){
-        updatePage(request.split('/').slice(2), res)
+        updatePage(path.relative('/file-list-update', request), res)
         return;
     }
     
