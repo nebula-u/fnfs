@@ -1,4 +1,4 @@
-window.onload = function () {
+function getFileList(path) {
     var listDiv = document.getElementById('file-list')
     fetch('/file-list-update')
     .then(response=>response.json())
@@ -7,19 +7,21 @@ window.onload = function () {
             // 1. 创建一个文件项
             const file = document.createElement('div');
 
-            // 2. 设置文件id和class
+            // 2. 设置文件id和class和path
             file.id = i
             if(0 === i%2){
                 file.classList.add('file-item-o')
             }else{
                 file.classList.add('file-item-j')
             }
+            // file.classList.add('file-item')
+            file.path = json.list[i].path
             
             // 3. 创建和设置文件的名称div
             const fileName = document.createElement('div')
             fileName.id = 'file-name'
             fileName.classList.add('master')
-            fileName.title = json.list[i].name
+            fileName.title = json.list[i].path
             fileName.innerText = json.list[i].name
             
             // 4. 创建和设置文件的日期div
@@ -59,7 +61,7 @@ window.onload = function () {
             const fileOpti = document.createElement('div')
             fileOpti.id = 'file-opti'
             fileOpti.classList.add('standby')
-            fileOpti.innerText = ''
+            fileOpti.innerText = '删除'
 
             // 8. 将各个子项div添加到文件项div中
             file.append(fileName)
@@ -71,6 +73,23 @@ window.onload = function () {
             // 9. 将文件项div添加到列表中
             listDiv.append(file)
         }
+
+        // 10. 
+        const oFileList = document.getElementById('file-list')
+        
+        const allFiles = oFileList.childNodes
+        allFiles.forEach(function (file) {
+            const nameDiv = file.querySelector('#file-name')
+            const path = nameDiv.getAttribute('title')
+            nameDiv.addEventListener('click', ()=>{
+                console.log(path)
+            })
+        })
     })
     .catch(err=>console.log('request failed: ' + err))
+}
+
+window.onload = function () {
+    // 刚打开网页时，显示根目录文件列表
+    getFileList('/')
 }
