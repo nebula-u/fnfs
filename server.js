@@ -11,7 +11,7 @@ function updatePage(Path, res){
         Path = Path + path.sep
     }
 
-    console.log('#: ' + Path)
+    // console.log('#: ' + Path)
 
     // 定义返回给前端程序的数组对象
     let FileList = []
@@ -33,7 +33,7 @@ function updatePage(Path, res){
             // 填写文件路径
             let currentFile = Path + FileInfo.name
             FileInfo.path = '/' + path.relative(sharePath, currentFile)
-            console.log('8:' + path.relative(sharePath, currentFile))
+            // console.log('8:' + path.relative(sharePath, currentFile))
 
             // 获取文件大小、修改日期等详细信息
             let stats = fs.lstatSync(currentFile);
@@ -75,7 +75,7 @@ const server = http.createServer((req, res) => {
     }
     RequestSegment = request.split('/')
 
-    console.log('@ ' + request)
+    // console.log('@ ' + request)
     if('file-list-update' === RequestSegment[1]){
         updatePage(path.relative('/file-list-update', request), res)
         return;
