@@ -1,6 +1,12 @@
-function getFileList(path) {
+function getFileList(Path) {
     var listDiv = document.getElementById('file-list')
-    fetch('/file-list-update')
+    while (listDiv.firstChild) {
+        listDiv.removeChild(listDiv.firstChild)
+    }
+    // console.log(Path)
+    url = '/file-list-update' + Path + '/'
+    
+    fetch(url)
     .then(response=>response.json())
     .then(json=>{
         for(let i = 0; i < json.list.length; i++){
@@ -21,7 +27,9 @@ function getFileList(path) {
             const fileName = document.createElement('div')
             fileName.id = 'file-name'
             fileName.classList.add('master')
-            fileName.title = json.list[i].path
+            console.log(json.list[i].path)
+            var pathParts = json.list[i].path.split('/').slice(4)
+            fileName.title = '/' + pathParts.join('/')
             fileName.innerText = json.list[i].name
             
             // 4. 创建和设置文件的日期div
@@ -74,7 +82,7 @@ function getFileList(path) {
             listDiv.append(file)
         }
 
-        // 10. 
+        // 10. 给各个文件的文件名添加点击事件
         const oFileList = document.getElementById('file-list')
         
         const allFiles = oFileList.childNodes
@@ -82,7 +90,7 @@ function getFileList(path) {
             const nameDiv = file.querySelector('#file-name')
             const path = nameDiv.getAttribute('title')
             nameDiv.addEventListener('click', ()=>{
-                console.log(path)
+                getFileList(path)
             })
         })
     })
@@ -91,5 +99,5 @@ function getFileList(path) {
 
 window.onload = function () {
     // 刚打开网页时，显示根目录文件列表
-    getFileList('/')
+    getFileList('')
 }
