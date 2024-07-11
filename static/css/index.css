@@ -1,38 +1,26 @@
 body {
-    background-color: rgb(52, 51, 51);
+    background-color: rgb(50, 50, 50);
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     user-select: none;
 }
 
-#option-area {
-    border-bottom: 1px solid rgb(209, 208, 208);
-    height: 25px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-#option-area button {
-    margin-left: 10px;
-    background-color: gray;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    height: 20px;
-    cursor: pointer;
+#fast-menu {
+    width: 200px;
+    background-color: black;
 }
 
 #path-display {
+    border-top: 1px solid rgb(209, 208, 208);
     border-bottom: 1px solid rgb(209, 208, 208);
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: 25px;
+    height: 30px;
 }
 
 #path-display #path {
-    background-color: rgb(230, 230, 230);
+    background-color: rgb(200, 200, 200);
     color: rgb(0, 0, 0);
     border-radius: 5px;
     flex: 1;
@@ -45,9 +33,9 @@ body {
     font-size: small;
 }
 
-#path-display #back {
+.back-front {
     margin-left: 10px;
-    background-color: gray;
+    background-color: rgb(70, 70, 70);
     color: white;
     border-radius: 5px;
     border: none;
@@ -60,30 +48,26 @@ body {
 
     display: flex;
     flex-direction: row;
-
 }
 
-#fast-menu {
-    width: 200px;
-    background-color: black;
-}
+#main-page{
+    flex: 1;
 
-#content-display{
     display: flex;
     flex-direction: column;
     justify-content: stretch;
-    flex: 1;
 }
 
 #item-list{
-    display: flex;
-    flex-direction: row;
-    height: 25px;
+    height: 30px;
     background-color: rgb(52, 51, 51, 0.8);
     color: white;
     font-size: small;
-    line-height: 25px;
+    line-height: 30px;
     border-bottom: 1px solid white;
+
+    display: flex;
+    flex-direction: row;
 }
 
 #item-list #name{
@@ -117,6 +101,10 @@ body {
     margin-left: 10px;
 }
 
-#content-display iframe{
+#main-page iframe{
     flex: 1;
+}
+
+#main-page iframe::-webkit-scrollbar{
+    width: 5px;
 }

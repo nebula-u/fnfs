@@ -11,31 +11,26 @@
 </head>
 
 <body style="width: 100%; height: 100%; margin: 0px;">
-    <div id="option-area">
-        <button id="read-upload">上传文件</button>
-        <button id="read-newtext">新建文本</button>
-        <button id="read-newfolder">新建文件夹</button>
-    </div>
-    <div id="path-display">
-        <button id="back">上一层</button>
-        <div id="path">
-            <div id="path-level-1" style="margin-left: 10px;"></div>
-        </div>
-    </div>
-    <div id="main-page">
-        <div id="fast-menu">
+    <div id="fast-menu">
 
-        </div>
-        <div id="content-display">
-            <div id="item-list">
-                <div id="name">名称</div>
-                <div id="date">日期</div>
-                <div id="type">类型</div>
-                <div id="size">大小</div>
-                <div id="opti">操作</div>
+    </div>
+
+    <div id="main-page">
+        <div id="path-display">
+            <button id="back" class="back-front">后退</button>
+            <button id="front" class="back-front">前进</button>
+            <div id="path">
+                <div id="path-level-1" style="margin-left: 10px;"></div>
             </div>
-            <iframe id="file-list-ifream" src="./static/html/file-list.html" frameborder="0"></iframe>
         </div>
+        <div id="item-list">
+            <div id="name">名称</div>
+            <div id="date">日期</div>
+            <div id="type">类型</div>
+            <div id="size">大小</div>
+            <div id="opti">操作</div>
+        </div>
+        <iframe id="file-list-ifream" src="./static/html/file-list.html" frameborder="0"></iframe>
 
     </div>
 </body>
