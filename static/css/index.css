@@ -41,6 +41,10 @@ body {
     line-height: 20px;
 }
 
+#path-level-1{
+    font-size: small;
+}
+
 #path-display #back {
     margin-left: 10px;
     background-color: gray;

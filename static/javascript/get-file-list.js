@@ -1,3 +1,6 @@
+// 父页面
+var parentWindow = window.parent;
+
 function getFileList(Path) {
     var listDiv = document.getElementById('file-list')
     while (listDiv.firstChild) {
@@ -20,8 +23,8 @@ function getFileList(Path) {
             }else{
                 file.classList.add('file-item-j')
             }
-            // file.classList.add('file-item')
-            file.path = json.list[i].path
+            // file.path = json.list[i].path
+            
             
             // 3. 创建和设置文件的名称div
             const fileName = document.createElement('div')
@@ -80,6 +83,16 @@ function getFileList(Path) {
             // 9. 将文件项div添加到列表中
             listDiv.append(file)
         }
+
+        // 10.维护当前页面显示的路径
+        var pos = json.list[0].path.lastIndexOf('/')
+        parentWindow.curDisplayPath = json.list[0].path.substr(0, pos)
+        if('' === parentWindow.curDisplayPath){
+            parentWindow.curDisplayPath = '/'
+        }
+        // parentWindow.path_level_1.innerText = parentWindow.curDisplayPath
+        var path_level_1 = parent.document.getElementById('path-level-1')
+        path_level_1.innerText = parentWindow.curDisplayPath
 
         // 10. 给各个文件的文件名添加点击事件
         const oFileList = document.getElementById('file-list')
